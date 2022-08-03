@@ -18,9 +18,10 @@ export const Home =() => {
     getresponse()
   },[])
   
-// 
+//
+const [data,Setdata]=useState<User | null>(null) 
   useEffect(()=>{
-    const [data,Setdata]=useState<User | null>(null)
+    
     const dataa=window.localStorage.getItem("Data")
 if(dataa){
   Setdata(JSON.parse(dataa))
