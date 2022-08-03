@@ -4,10 +4,7 @@ import { Input } from "./Fields";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
-import { loginContext } from "./usecontext";
-import { useContext } from "react";
 export const Login = () => {
-  const logged=useContext(loginContext)
   const navigate = useNavigate();
   const initialvalues = {
     email: "",
@@ -31,15 +28,15 @@ export const Login = () => {
       console.log(response);
       console.log(response.data.accessToken);
       navigate("/");
-      //  if (User) {
-      //    User.setuser({
-      //  token: response.data.accessToken,
-      //    });
+      window.location.reload()
+      // if (userr) {
+      // userr.setuser({
+        // email:response.data.email,
+        // token: response.data.accessToken,
+      //  });
       //  }
+      window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken}))
       //
-      if (logged) {
-       logged.setloggedin(true);
-      }
       // setUser(response.data.accessToken)
     } catch (error) {
       console.log(error);
@@ -92,8 +89,9 @@ export const Login = () => {
                       initialValues={initialvalues}
                       validationSchema={validate}
                       onSubmit={async (value, props) => {
-                        await values(value);
                         props.resetForm();
+                        await values(value);
+                        
                         console.log("Hello");
                       }}
                     >

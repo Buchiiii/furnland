@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react"
+import { createContext,  useState } from "react"
 import { User,Themecontext } from "./Types";
 
 type usecontext={
@@ -14,25 +14,22 @@ export const userContext =createContext<usecontext | null>(null);
 
 export const ThemeContext=({children}:Themecontext)=>{
     const [user,setuser]=useState<User | null >(null);
-    const [loggedin,setloggedin]=useState(false)
-
-    useEffect(()=>{
-        window.localStorage.setItem("logged",JSON.stringify(loggedin))
-    },[loggedin])
+    
+    console.log(user)
 
     
-     useEffect(()=>{
-            user &&  user.token && window.localStorage.setItem("token", user.token)
-           },[user])
+    //  useEffect(()=>{
+            // user && window.localStorage.setItem("Data", JSON.stringify(user))
+        //    },[user])
 
    
    
    
     return (
-        <loginContext.Provider value={{loggedin,setloggedin}}>
+       
             <userContext.Provider value={{user,setuser}}>
             {children}
         </userContext.Provider>
-        </loginContext.Provider>
+        
     )
 }

@@ -1,11 +1,12 @@
 import image from "../Images/unsplash_IH7wPsjwomc.png"
 import {Link} from 'react-router-dom'
 import { Get } from "./Axiosoperations";
-import { productProps } from "./Types";
+import { productProps, User } from "./Types";
 import { useEffect, useState } from "react";
 import{useNavigate} from "react-router-dom"
 export const Home =() => {
   const navigate=useNavigate()
+  
   const [responsedata,setresponsedata]=useState<productProps[]| null>(null)
   const getresponse=async ()=>{
    const response=await Get("https://test-furn.herokuapp.com/item/items?_limit= 4")
@@ -17,6 +18,22 @@ export const Home =() => {
     getresponse()
   },[])
   
+// 
+  useEffect(()=>{
+    const [data,Setdata]=useState<User | null>(null)
+    const dataa=window.localStorage.getItem("Data")
+if(dataa){
+  Setdata(JSON.parse(dataa))
+}
+  
+
+  },[])
+  
+  
+  
+  
+  
+
 
 
   
