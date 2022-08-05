@@ -1,4 +1,5 @@
 import image from "../Images/unsplash_IH7wPsjwomc.png"
+import url from "../Images/stockphoto.jpg"
 import {Link} from 'react-router-dom'
 import { Get } from "./Axiosoperations";
 import { productProps, User } from "./Types";
@@ -198,33 +199,32 @@ if(dataa){
       <div style={{height:"700px"}}>
         <div className="container p-5">
           <div className="row">
-            <div className="col-12">
+            <div className="col-12 col-lg-6">
               <h1 style={{color: "#054C73"}}>Best Selling Product </h1>
             </div>
-            <div className="col-12">
-              <div className="text-end">
-                <Link className="h3" style={{color:"#F66B0E"}} to="/products">See all products</Link>
+            <div className=" col-12 col-lg-6">
+              <div className="mt-3 text-end">
+                <Link className="h4 " style={{color:"#F66B0E"}} to="/products">See all products</Link>
               </div>
             </div>
           </div>
-          <div className= "row mt-4 gx-2 gy-5 ">
+          <div className= "row justify-content-between mt-1 gx-5 gy-5 ">
 
                 {responsedata ? responsedata.map((element)=>(
-                       <div className="ms-5  border col-5" key={element.id}>
-                       <div style={{height:"400px"}}>
-                          <div className="h-75 "></div>
-                          <div className="row justify-content-center">
-                          <div className="border col-10">
+                       <div className="col-lg-3 col-12" key={element.id}>
+                       <div style={{height:"250px",background:` url(${url}) center `}}>
+                          <div className="row align-items-end justify-content-center">
+                          <div className="border bg-white col-10">
 
                           
                          
-                          <div >
+                          <div>
                             <span>{element.itemName}</span>
 
                           </div>
 
                           <div className="text-end">
-  <button type="button" style={{backgroundColor:"#F66B0E"}}className="btn text-white">Add to cart</button>
+  <button type="button" style={{backgroundColor:"#F66B0E"}}className="btn btn-sm text-white">Add to cart</button>
 </div>
 <div >
   <span>Price: #{element.itemPrice}</span>

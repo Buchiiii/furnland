@@ -1,35 +1,53 @@
 import axios from "axios";
 import { useState, useContext, useEffect } from "react";
 import { Get } from "./Axiosoperations";
+import url from "../Images/stockphoto.jpg"
 import { productProps } from "./Types";
-import { loginContext, userContext } from "./usecontext";
+import { User } from "./Types";
+//import { loginContext, userContext } from "./usecontext";
 import { useNavigate } from "react-router-dom";
 
 export const Productpage = () => {
   const navigate = useNavigate();
-  const log = useContext(loginContext);
-  const users = useContext(userContext);
   const [responsedata, setresponsedata] = useState<productProps[] | null>(null);
   const getresponse = async () => {
-    const response = await Get(
-      "https://test-furn.herokuapp.com/item/items/?_limit=2"
-    );
-    setresponsedata(response?.data);
+    try{
+      const response = await Get(
+        "https://test-furn.herokuapp.com/item/items/?_limit=2"
+      );
+      setresponsedata(response?.data);
+    }catch(err){
+      console.log(err);
+    }
+    
+    
+    
+    
     // console.log(responsedata);
   };
-  if (users) {
-    if (users.user) {
-      users.user.token ? console.log(users.user.token) : console.log("nothing");
-    }
-  }
+  
+  const [data,setdata]=useState<User| null>(null)
+  //const logg=useContext(loginContext) 
+  useEffect(()=>{
+     const user=window.localStorage.getItem("Data")
+    if(user){
+   setdata(JSON.parse(user))
+   
+     }
+     
+     
+  },[]) 
+  
+  
+  
 
-  const token = localStorage.getItem("token") || "";
+  
   //console.log(token)
 
   const config = {
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${data?.token}`,
       "Access-Control-Allow-Origin": "*",
     }
   };
@@ -41,6 +59,7 @@ export const Productpage = () => {
         {},
         config
       );
+      alert("Item successfully added")
       console.log(response);
     } catch (err) {}
   };
@@ -56,7 +75,7 @@ export const Productpage = () => {
             responsedata.map((element) => (
               <div className="col-6 col-lg-3 " key={element.id}>
                 <div style={{ height: "400px" }}>
-                  <div className="h-50 border"></div>
+                  <div className="h-50 border" style={{background:`linear-gradient( rgba(0,0,0,0.7), rgba(0,0,0, 0.7)) , url(${url}) center `}}></div>
                   <div className="row">
                     <div className="col-12">
                       <span>{element.itemName}</span>
@@ -74,8 +93,8 @@ export const Productpage = () => {
                         <button
                           type="button"
                           onClick={async () => {
-                            log.loggedin
-                              ? await postdata(element.id)
+                            data
+                            ? await postdata(element.id)
                               : navigate("/login");
                           }}
                           style={{ backgroundColor: "#F66B0E" }}
