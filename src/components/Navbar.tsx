@@ -48,7 +48,7 @@ const navigate=useNavigate();
                 <Nav  navbarScroll>
                     <Nav.Link ><Link className="pe-4 nav-link" to="/">Home</Link></Nav.Link>
                     <Nav.Link><Link className="pe-4 nav-link" to="/">Services</Link></Nav.Link>
-                    <Nav.Link><Link className="pe-4 nav-link" to="/">Products</Link></Nav.Link>
+                    <Nav.Link><Link className="pe-4 nav-link" to="/products">Products</Link></Nav.Link>
                     <Nav.Link><Link className="pe-4 nav-link" to="/">Testimonials</Link></Nav.Link>
                     {data ?
                     <NavDropdown className="pe-4 nav-link" title={data.email} id="navbardropdown">
@@ -61,7 +61,7 @@ const navigate=useNavigate();
                             navigate("/")
                         }}>Logout</button></NavDropdown.Item>
                     </NavDropdown>: 
-                    <div className="w-100 d-lg-flex"><Nav.Link> <Link style={{ backgroundColor: "#F66B0E"}}className="text-white nav-link btn btn-sm w-100" to="/login">Login</Link></Nav.Link><Nav.Link> <Link style={{ backgroundColor: "#F66B0E"}}className="text-white nav-link btn btn-sm w-100" to="/login">Register</Link></Nav.Link></div>}
+                    <div className="w-100 d-lg-flex"><Nav.Link> <Link style={{ backgroundColor: "#F66B0E"}}className="text-white nav-link btn btn-sm w-100" to="/login">Login</Link></Nav.Link><Nav.Link> <Link style={{ backgroundColor: "#F66B0E"}}className="text-white nav-link btn btn-sm w-100" to="/register">Register</Link></Nav.Link></div>}
 
                 </Nav>
             </Navbar.Collapse>

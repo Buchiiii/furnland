@@ -7,6 +7,7 @@ import {Home} from "./components/Home";
 import {Login} from "./components/Login";
 import {Productpage} from "./components/ProductPage";
 import { Cart } from './components/Cart';
+import {Register} from './components/Register'
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
       <Route path="/login" element={<Login/>}/>
       <Route path="/products" element={<Productpage/>}/>
       <Route path="/cart" element={<Cart/>}/>
+      <Route path="/register" element={<Register/>}/>
       </Routes>
     </Router>
        

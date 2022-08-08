@@ -1,5 +1,6 @@
-import image from "../Images/unsplash_IH7wPsjwomc.png"
-import url from "../Images/stockphoto.jpg"
+import image from "../Images/unsplash_IH7wPsjwomc.png";
+import url from "../Images/stockphoto.jpg";
+import imagee from "../Images/Rectangle 5.jpg"
 import {Link} from 'react-router-dom'
 import { Get } from "./Axiosoperations";
 import { productProps, User } from "./Types";
@@ -56,7 +57,7 @@ if(dataa){
               <div className="text-center mb-5 mt-5">
                 <p className="text-muted">
                   We think the chair is the most important piece of furniture in
-                  your homw because if you love the chair you are sitting on,
+                  your home because if you love the chair you are sitting on,
                   chances are you will love the rest of the room{" "}
                 </p>
               </div>
@@ -118,11 +119,14 @@ if(dataa){
               </button>
             </div>
           </div>
-          <div className="col-lg-6 border">
-            <div className="col-6 border">
-                <div className="row">
-                    div.col-12
-                </div>
+          <div className="col-lg-6 ">
+            <div className="row h-100">
+              <div className=" align-items-end col-6">
+                
+                <div className="h-50   " style={{background:` url(${url}) center `}}></div>
+                
+               
+              </div>
             </div>
           </div>
         </div>

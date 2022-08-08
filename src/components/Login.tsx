@@ -38,7 +38,8 @@ export const Login = () => {
       window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken}))
       //
       // setUser(response.data.accessToken)
-    } catch (error) {
+    } catch (error:any) {
+      alert(error.response.data.message)
       console.log(error);
       // }
 
@@ -76,7 +77,7 @@ export const Login = () => {
                       </button>
                     </div>
                     <div className="text-center mt-3">
-                      <button className="btn btn-danger w-100">
+                      <button className="btn border w-100">
                         Continue with facebook
                       </button>
                       <hr />
@@ -127,8 +128,8 @@ export const Login = () => {
                             </div>
                             <div className="mt-4 text-center">
                               <p>
-                                Already have an account?
-                                <Link to="/">Register</Link>
+                                Don't have an account?
+                                <Link to="/register">Register</Link>
                               </p>
                             </div>
                           </Form>
