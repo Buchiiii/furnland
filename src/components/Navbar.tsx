@@ -34,13 +34,17 @@ const navigate=useNavigate();
         <>
         <Navbar expand="lg">
             <Container>
-            <Navbar.Brand>
+                
+                <Navbar.Toggle className="border border-danger"/>
+                <Navbar.Brand>
                 <div className="navbar-brand">
                 <Link style={{textDecoration:"none",color: "#054C73"}}  to="/"><h1>Furnland</h1></Link>
                 </div>
                 
             </Navbar.Brand>
-            <Navbar.Toggle className="border float-right border-danger"/>
+            
+                
+           
            
            
            
@@ -52,9 +56,10 @@ const navigate=useNavigate();
                     <Nav.Link><Link className="pe-4 nav-link" to="/">Testimonials</Link></Nav.Link>
                     {data ?
                     <NavDropdown className="pe-4 nav-link" title={data.email} id="navbardropdown">
-                        <NavDropdown.Item><Link className="text-center nav-link" to="/">My profile</Link></NavDropdown.Item>
-                        <NavDropdown.Item><Link className="text-center nav-link" to="/">My order</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className=" text-center  ps-1 nav-link" to="/profile"><span className="me-2"><i className="bi bi-person-circle"></i></span>My profile</Link></NavDropdown.Item>
+                        <NavDropdown.Item><Link className="text-center  nav-link" to="/"><span className="me-2"><i className="bi bi-box2"></i></span>My order</Link></NavDropdown.Item>
                         <NavDropdown.Item><button type="button" className="btn w-100 btn-danger" onClick={()=>{
+                            navigate("/")
                             window.localStorage.clear();
                             window.location.reload();
                             
@@ -77,6 +82,7 @@ const navigate=useNavigate();
         }} className="btn btn-sm p-0"><span style={{color:"#F66B0E",fontSize:"20px"}}><i className="bi bi-cart"></i> Cart</span></button>
         </Nav.Link>
  </Nav>
+ 
             </Container>
         </Navbar>
         </>

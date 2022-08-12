@@ -68,7 +68,7 @@ if(dataa){
       <div className=" ">
         <div className="row">
           <div className="col-12">
-            <div className="" style={{ background:`url(${image}),50px 50px/50px 50px , fixed`,height: "700px" }}></div>
+            <div className="bg-image" style={{ background:`url(${image}),50px 50px/50px 50px , fixed`,height: "700px" }}></div>
           </div>
         </div>
       </div>

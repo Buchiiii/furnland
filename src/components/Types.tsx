@@ -32,3 +32,4 @@ itemPrice:string,
 itemType: string,
 vendorId: number
 }
+
