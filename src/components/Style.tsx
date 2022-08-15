@@ -11,6 +11,7 @@ Styleprops={
         textDecoration:"none"
 },
 style2:{
+    
     paddingBottom:"10px",
     width: "100%",
     background:`linear-gradient( rgba(0,0,0,0.7), rgba(0,0,0, 0.7)) , url(${Images}) center / cover fixed `
@@ -21,6 +22,9 @@ style3:{
    background: "white"
    
 },
+// style4:{
+//     height:"90vh",
+// }
 buttonstyle:{
     backgroundColor:"#F66B0E" ,
     borderRadius:"0px",

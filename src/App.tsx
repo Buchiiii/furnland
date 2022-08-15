@@ -9,11 +9,15 @@ import {Productpage} from "./components/ProductPage";
 import { Cart } from './components/Cart';
 import {Register} from './components/Register'
 import { Profile } from './components/Profile';
+import {Footer} from "./components/Footer";
 function App() {
   return (
+    <>
     <div className="App">
     <Router>
+      <div>
       <NavbarComponent/>
+      <main>
       <Routes>
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
@@ -22,11 +26,18 @@ function App() {
       <Route path="/register" element={<Register/>}/>
       <Route path="/profile" element={<Profile/>}/>
       </Routes>
+      </main>
+      <Footer/>
+      </div>
     </Router>
-       
+    
+      
        
        
     </div>
+   
+
+    </>
   );
 }
 

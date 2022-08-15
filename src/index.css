@@ -11,3 +11,11 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.nav-link:hover{
+  background-color: rgb(204, 199, 199);
+}
+
+.navbar-dropdown-item:focus{
+  background-color: none;
+}

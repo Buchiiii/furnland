@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState, useContext, useEffect } from "react";
+import { useState,  useEffect } from "react";
 import { Get } from "./Axiosoperations";
 import url from "../Images/stockphoto.jpg"
 import { productProps } from "./Types";

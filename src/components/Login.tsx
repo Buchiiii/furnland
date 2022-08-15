@@ -52,7 +52,7 @@ export const Login = () => {
   return (
     <>
       <div style={Styleprops.style2}>
-        <div className="container-fluid">
+        <div className="container-fluid pb-5">
           <div className="row justify-content-center justify-content-lg-end justify-content">
             <div
               className="border col col-md-8 col-lg-5 me-lg-5 m-2"
