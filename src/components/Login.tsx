@@ -35,7 +35,7 @@ export const Login = () => {
         // token: response.data.accessToken,
       //  });
       //  }
-      window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken}))
+      window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken,role:response.data.roles[0].id}))
       //
       // setUser(response.data.accessToken)
     } catch (error:any) {
@@ -110,7 +110,7 @@ export const Login = () => {
                               label="Password"
                             />
                             <div className="row justify-content-between">
-                              <div className="col-4">remeber me</div>
+                              <div className="col-4">Remember me</div>
                               <div className="col-6">
                                 <div className="text-end">
                                   <Link to="/">Forgotten password</Link>

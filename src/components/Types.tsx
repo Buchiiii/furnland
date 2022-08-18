@@ -13,8 +13,9 @@ export type inputProps={
 }
 
 export type User={
-    email:string
-    token:string
+    email:string,
+    token:string,
+    role:number
 }
 
 export type Themecontext = {
@@ -33,3 +34,25 @@ itemType: string,
 vendorId: number
 }
 
+export type getrequestwithtoken={
+    url:string,
+    token:string
+}
+
+export type ordertype={
+    count: number,
+deliveryEstimation: string,
+hasBeenConfirmed: boolean,
+hasBeenDelivered: boolean,
+hasBeenSent: boolean,
+imageUrl: string,
+itemCategory: string,
+itemDescription: string,
+itemName: string,
+itemPrice:string, 
+itemType: string ,
+
+orderId: number,
+orderedItemId: number,
+userId: number,
+vendorId: number}

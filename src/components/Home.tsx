@@ -12,9 +12,9 @@ export const Home = () => {
   const [responsedata, setresponsedata] = useState<productProps[] | null>(null);
   const getresponse = async () => {
     const response = await Get(
-      "https://test-furn.herokuapp.com/item/items?_limit= 4"
+      "https://test-furn.herokuapp.com/item/0/4"
     );
-    setresponsedata(response?.data);
+    setresponsedata(response?.data.content);
     console.log(response);
   };
 
@@ -141,29 +141,38 @@ export const Home = () => {
           </div>
 
           <div className="row justify-content-between ">
-            <div className="col-lg-3 border pt-5 pb-5 bg-light ">
+          <div className="seller col-lg-3 border pt-5 pb-5 ">
+            <Link to="/vendorregistration" className="text-decoration-none   ">
               <div className="container ">
                 <div className="row ">
-                  <div className="text-center">
+                 
+                  <div className="text-center text-dark">
                     <h4>Become a seller</h4>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center mt-2">
                     <p className="text-muted">
                       The perfect mix of style that complements the room's
                       style.The perfect mix of style that complements the room's
                       style.
                     </p>
                   </div>
+                  
                 </div>
+              
               </div>
-            </div>
+              </Link>
+            
+              </div>
+
+              
+           
             <div className="col-lg-3 pt-5 pb-5 border bg-light  ">
               <div className="container">
                 <div className="row ">
                   <div className="text-center">
-                    <h3>Become a seller</h3>
+                    <h4>Upload your goods</h4>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center mt-2">
                     <p className="text-muted">
                       The perfect mix of style that complements the room's
                       style.The perfect mix of style that complements the room's
@@ -173,13 +182,14 @@ export const Home = () => {
                 </div>
               </div>
             </div>
+            
             <div className="col-lg-3 border pt-5 pb-5 bg-light ">
               <div className="container">
                 <div className="row">
                   <div className="text-center">
-                    <h3>Become a seller</h3>
+                    <h4>Earn some income</h4>
                   </div>
-                  <div className="text-center">
+                  <div className="text-center mt-2">
                     <p className="text-muted">
                       The perfect mix of style that complements the room's
                       style.The perfect mix of style that complements the room's
