@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { Input } from "./Fields";
 import * as Yup from "yup";
+import Spinner from 'react-bootstrap/Spinner';
 
 import axios from "axios";
 import { User } from "./Types";
@@ -88,9 +89,13 @@ export const Account = () => {
   useEffect(() => {
     if (data) {
       getprofile();
-      getaddress();
+      if(data.role ===1){
+        getaddress();
+      }
+      
     }
   }, [data]);
+
   return (
     <>
       {istrue ? (
@@ -101,7 +106,7 @@ export const Account = () => {
             </div>
           </Col>
           <Row className="pt-3">
-            <Col className="" lg={data && data.role === 2 ? 12 : 6}>
+            <Col className="" lg={data && data.role === 3 ? 12 : 6}>
               <div className="d-flex justify-content-between ps-2 pt-3 pb-2 border border-bottom">
                 <h6>ACCOUNT DETAILS</h6>
                 <button className="btn me-2 btn-md">
@@ -121,7 +126,7 @@ export const Account = () => {
                   </button>
                 </div>
               ) : (
-                <p>Loading</p>
+                <div className="pt-5 text-center"><Spinner animation="border"/></div>
               )}
             </Col>
             {data && data.role === 1 ? 
@@ -157,7 +162,7 @@ export const Account = () => {
                     )}
                   </>
                 ) : (
-                  <p>Loading</p>
+                  <div className="pt-5 text-center"><Spinner animation="border"/></div>
                 )}
               </>
             </Col>
@@ -219,6 +224,7 @@ export const Account = () => {
         validationSchema={validate}
         onSubmit={async (value, props) => {
           await postaddress(value);
+          await getaddress()
           props.resetForm();
           handlehide();
         }}

@@ -15,7 +15,8 @@ export type inputProps={
 export type User={
     email:string,
     token:string,
-    role:number
+    role:number,
+    id:number
 }
 
 export type Themecontext = {
@@ -56,3 +57,14 @@ orderId: number,
 orderedItemId: number,
 userId: number,
 vendorId: number}
+
+export type vendorProps = {
+    deliveryEstimation:string,
+    imageUrl: string,
+    itemCategory: string,
+    itemDescription: string,
+    itemName: string,
+    itemPrice:string,
+    itemType: string,
+    
+    }

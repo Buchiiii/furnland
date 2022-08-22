@@ -5,7 +5,7 @@ import url from "../Images/stockphoto.jpg"
 import { productProps } from "./Types";
 import { User } from "./Types";
 //import { loginContext, userContext } from "./usecontext";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 
 export const Productpage = () => {
   const navigate = useNavigate();
@@ -68,20 +68,24 @@ export const Productpage = () => {
   }, []);
 
   return (
-    <div>
-      <div className="container">
+    
+    <div  className="bg-light">
+      <div className="container pt-5">
         <div className="row gy-0">
           {responsedata ? (
             responsedata.map((element) => (
+              <>
+              
               <div className="col-6 col-lg-3 " key={element.id}>
+              <Link className="text-decoration-none" to={`/products/${element.id}`}>
                 <div style={{ height: "400px" }}>
                   <div className="h-50 border" style={{background:`linear-gradient( rgba(0,0,0,0.7), rgba(0,0,0, 0.7)) , url(${url}) center `}}></div>
                   <div className="row">
                     <div className="col-12">
-                      <span>{element.itemName}</span>
+                      <span className="text-dark">{element.itemName}</span>
                     </div>
                     <div className="col-12">
-                      <span>#{element.itemPrice}</span>
+                      <span className="text-dark">#{element.itemPrice}</span>
                     </div>
                     <div className="col-12">
                       <span className="text-muted">
@@ -106,11 +110,16 @@ export const Productpage = () => {
                     </div>
                   </div>
                 </div>
+                </Link>
               </div>
+             
+              </>
             ))
-          ) : (
+            ) : (
             <p>Loading</p>
-          )}
+          )
+          }
+
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import{Row,Col} from "react-bootstrap"
 import { useState, useEffect } from "react";
 import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
@@ -21,35 +22,50 @@ export const NavbarComponent = () => {
     <>
       <Navbar expand="lg">
         <Container>
-          <Navbar.Toggle className="border border-danger" />
-          <Navbar.Brand className="border">
+          <Navbar.Toggle className="" />
+          <Navbar.Brand className="">
             <Link style={{ textDecoration: "none", color: "#054C73" }} to="/">
               <h1>Furnland</h1>
             </Link>
           </Navbar.Brand>
 
-          <Navbar.Collapse className="" id="navbarScroll">
-            <Nav navbarScroll>
+          <Navbar.Collapse className="pt-2" id="navbarScroll">
+          <Nav className="w-100" navbarScroll>
+            <div className=" w-100">
+              <Row>
+                  <Col xs={9} lg={10}>
+                  <input className="form-control"></input>
+                  </Col>
+                  <Col lg={2}>
+                  <button className="btn  btn-outline-primary">Search</button>
+                  </Col>
+              </Row>
+              
+              
+</div>
+            </Nav>
+            <Nav className="" navbarScroll>
+              
               <Nav.Link>
                 <Link className="pe-4 nav-link" to="/">
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link>
+              {/* <Nav.Link>
                 <Link className="pe-4 nav-link" to="/">
                   Services
                 </Link>
-              </Nav.Link>
+              </Nav.Link> */}
               <Nav.Link>
                 <Link className="pe-4 nav-link" to="/products">
                   Products
                 </Link>
               </Nav.Link>
-              <Nav.Link>
+              {/* <Nav.Link>
                 <Link className="pe-4 nav-link" to="/">
                   Testimonials
                 </Link>
-              </Nav.Link>
+              </Nav.Link> */}
               {data ? (
                 <NavDropdown
                   className="pe-4 nav-link"
@@ -123,8 +139,10 @@ export const NavbarComponent = () => {
               )}
             </Nav>
           </Navbar.Collapse>
+          {data && data.role === 1 ? 
           <Nav>
             <Nav.Link>
+            
               <button
                 type="button"
                 onClick={() => {
@@ -140,8 +158,11 @@ export const NavbarComponent = () => {
                   <i className="bi bi-cart"></i> Cart
                 </span>
               </button>
+              
             </Nav.Link>
+            
           </Nav>
+          : null}
         </Container>
       </Navbar>
     </>

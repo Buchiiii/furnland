@@ -2,6 +2,7 @@ import { Container, Row, Col ,Navbar,Nav} from "react-bootstrap";
 import {Link} from "react-router-dom"
 import {Account} from "../components/Account";
 import {Order} from "../components/Order";
+import {Vendor} from "./Vendor"
 import {useState,useEffect} from "react"
 import { User } from "./Types";
 
@@ -43,7 +44,7 @@ export const Profile = () => {
                     setvendor(false)
                   }}><span className="me-2"><i className="bi bi-box2"></i></span>Order</Nav.Link>
 
-                  {data && role === 2 ? <Nav.Link onClick={()=>{
+                  {data && role === 3 ? <Nav.Link onClick={()=>{
                     setorder(false);
                     setaccount(false)
                     setvendor(true)
@@ -57,8 +58,10 @@ export const Profile = () => {
               lg={8}
             >
               {account ? <Account/> : null }
-              {order ? <Order/> : null}
-              {}
+              {data && data.id === 1 ? <>
+                {order ? <Order/> : null}
+              </> :<>{order ? <Order/> : null}</> }
+              {vendor ? <Vendor/> : null}
               
             </Col>
           </Row>

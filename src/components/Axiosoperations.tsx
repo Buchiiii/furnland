@@ -9,7 +9,7 @@ import {User} from "../components/Types"
             try{
                 const response=await axios.get(urll);
                 //isloading(false)
-                console.log(response);
+                //console.log(response);
                 return response;
 
             }catch(err){

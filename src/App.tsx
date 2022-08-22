@@ -10,7 +10,8 @@ import { Cart } from './components/Cart';
 import {Register} from './components/Register'
 import { Profile } from './components/Profile';
 import {Footer} from "./components/Footer";
-import {VendorRegister} from "./components/VendorRegister"
+import {VendorRegister} from "./components/VendorRegister";
+import {Itempage} from "./components/Itempage";
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
       <Route path="/" element={<Home/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/products" element={<Productpage/>}/>
+      <Route path="/products/:id" element={<Itempage/>}/>
       <Route path="/cart" element={<Cart/>}/>
       <Route path="/register" element={<Register/>}/>
       <Route path="/profile" element={<Profile/>}/>
