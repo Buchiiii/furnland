@@ -1,15 +1,14 @@
 import { Container, Row, Col ,Navbar,Nav} from "react-bootstrap";
-import {Link} from "react-router-dom"
+import Tab from "react-bootstrap/Tab"
+
 import {Account} from "../components/Account";
 import {Order} from "../components/Order";
 import {Vendor} from "./Vendor"
+import {Vendororder} from "./Vendororder"
 import {useState,useEffect} from "react"
 import { User } from "./Types";
 
 export const Profile = () => {
-  const [account,setaccount]=useState(true)
-  const [order,setorder]=useState(false)
-  const[vendor,setvendor]=useState(false)
   const [data, setdata] = useState<User | null>(null);
 
   const role=data?.role
@@ -26,7 +25,54 @@ export const Profile = () => {
   return (
     <>
       <div className="bg-light">
-        <Container>
+        <Tab.Container defaultActiveKey="account">
+        <Row className="pt-4 pb-5">
+        <Col className=" ms-2 " lg={3}>
+          {/* <Navbar className="ps-2"> */}
+          <div className="pb-5 bg-white shadow ">
+          <Nav className="d-inline  w-100" >
+            
+              <Nav.Link eventKey="account" className="text-dark border-bottom"><span className="me-2"><i className="bi bi-person-circle"></i></span>My Furnland Account</Nav.Link>
+              <Nav.Link eventKey="order" className="text-dark"><span className="me-2"><i className="bi bi-box2"></i></span>Order</Nav.Link>
+              {data && role === 3 ? <Nav.Link eventKey="vendor" className="text-dark"><span className="me-2"><i className="bi bi-box2"></i></span>Vendor</Nav.Link> : null}
+          </Nav>
+          </div>
+          {/* </Navbar> */}
+          </Col>
+          <Col
+              className="bg-white shadow ms-lg-2 border pb-3 border-white rounded "
+              lg={8}
+            >
+              <Tab.Content>
+                <Tab.Pane eventKey="account">
+                  <Account/>
+                </Tab.Pane>
+                <Tab.Pane eventKey="order">
+                  {data && role ===3 ? <Vendororder/> : <Order/> }
+                  
+                </Tab.Pane>
+                <Tab.Pane eventKey="vendor">
+                  <Vendor/>
+                </Tab.Pane>
+              </Tab.Content>
+
+              </Col>
+          </Row>
+        </Tab.Container>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        {/* <Container>
           <Row className="pt-4 pb-5">
             <Col className="bg-white shadow " lg={3}>
               <Navbar>
@@ -65,7 +111,7 @@ export const Profile = () => {
               
             </Col>
           </Row>
-        </Container>
+        </Container> */}
       </div>
     </>
   );

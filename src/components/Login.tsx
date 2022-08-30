@@ -4,6 +4,7 @@ import { Input } from "./Fields";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
+import {API} from ".././controller/api"
 export const Login = () => {
   const navigate = useNavigate();
   const initialvalues = {
@@ -17,8 +18,8 @@ export const Login = () => {
 
   const values = async (submit: { email: string; password: string }) => {
     try {
-      const response = await axios.post(
-        "https://test-furn.herokuapp.com/api/auth/signin",
+      const response = await API.post(
+        "api/auth/signin",
         {
           email: submit.email,
           password: submit.password,

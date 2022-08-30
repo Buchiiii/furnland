@@ -6,14 +6,24 @@ import { Get } from "./Axiosoperations";
 import { productProps, User } from "./Types";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {API} from ".././controller/api"
 export const Home = () => {
   const navigate = useNavigate();
 
   const [responsedata, setresponsedata] = useState<productProps[] | null>(null);
-  const getresponse = async () => {
-    const response = await Get("https://test-furn.herokuapp.com/item/0/4");
-    setresponsedata(response?.data.content);
-  };
+  const getresponse = async () =>{
+    try{
+      const response = await API.get("item/0/4");
+      setresponsedata(response?.data.content)
+    }
+    catch(err){
+      console.log(err)
+    }
+  }
+  // const getresponse = async () => {
+  //   const response = await Get("https://test-furn.herokuapp.com/item/0/4");
+  //   setresponsedata(response?.data.content);
+  // };
 
   useEffect(() => {
     getresponse();

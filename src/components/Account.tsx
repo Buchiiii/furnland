@@ -2,6 +2,7 @@ import { Row, Col, Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { Formik, Form } from "formik";
 import { Input } from "./Fields";
+import { API } from "../controller/api";
 import * as Yup from "yup";
 import Spinner from 'react-bootstrap/Spinner';
 
@@ -10,8 +11,7 @@ import { User } from "./Types";
 export const Account = () => {
   const [data, setdata] = useState<User | null>(null);
   const [addressinformation, setaddressinformation] = useState<
-    { country: string; address: string }[] | null
-  >(null);
+    { country: string; address: string }[] | null>(null);
   const [istrue, setistrue] = useState(true);
   const [address, setaddress] = useState(false);
   const [show, setshow] = useState(false);
@@ -34,22 +34,15 @@ export const Account = () => {
   const handlehide = () => {
     setshow(false);
   };
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${data?.token}`,
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
+
   const postaddress = async (submit: { country: string; address: string }) => {
     try {
-      const response = await axios.post(
-        "https://test-furn.herokuapp.com/users/currentUser/newAddress",
+      const response = await API.post(
+        "/users/currentUser/newAddress",
         {
           country: submit.country,
           address: submit.address,
         },
-        config
       );
       //navigate("/")
       console.log(response);
@@ -59,9 +52,8 @@ export const Account = () => {
   };
   const getaddress = async () => {
     try {
-      const response = await axios.get(
+      const response = await API.get(
         "https://test-furn.herokuapp.com/users/currentUser/addressbook",
-        config
       );
       console.log(response);
       setaddressinformation(response.data);
@@ -71,9 +63,8 @@ export const Account = () => {
   };
   const getprofile = async () => {
     try {
-      const response = await axios.get(
+      const response = await API.get(
         "https://test-furn.herokuapp.com/users/profile",
-        config
       );
       setprofile(response.data);
     } catch (err) {

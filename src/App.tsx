@@ -15,10 +15,12 @@ import {Itempage} from "./components/Itempage";
 function App() {
   return (
     <>
-    <div className="App">
+    <div className="d-flex flex-column align-items-between align-content-between">
     <Router>
-      <div>
+      <div className="" >
+        <div>
       <NavbarComponent/>
+      </div>
       <main>
       <Routes>
       <Route path="/" element={<Home/>}/>
@@ -31,7 +33,9 @@ function App() {
       <Route path="/vendorregistration" element={<VendorRegister/>}/>
       </Routes>
       </main>
+      <div className=" justify-self-end" >
       <Footer/>
+      </div>
       </div>
     </Router>
     

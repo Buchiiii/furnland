@@ -3,12 +3,12 @@ import { Col,Row,Tabs } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab"
 import axios from "axios";
 import { User } from "./Types";
-import { API } from "../controller/api";
 import {ordertype} from "./Types"
+import { API } from "../controller/api";
 import Spinner from 'react-bootstrap/Spinner';
 
 //import API from "../controller/api"
-export const Order=()=>{
+export const Vendororder=()=>{
     const [order,setorder]=useState<ordertype[] | null>(null);
     const [data, setdata] = useState<User | null>(null);
     const [sent,setsent]= useState<ordertype[]| null>(null);
@@ -21,10 +21,11 @@ export const Order=()=>{
             Authorization:`Bearer ${data?.token}`
         }
        }
+//To GET ORDER
     const getorder=async()=>{
 
        try{
-        const response = await axios.get("https://test-furn.herokuapp.com/order/myOrders",config)
+        const response = await axios.get("https://test-furn.herokuapp.com/users/myOrders",config)
         setorder(response.data)
         console.log(response.data)
         console.log(order)
@@ -52,11 +53,23 @@ export const Order=()=>{
             }))
         }
     },[order])
-    
-//TO DELIVER
-const deliver=async(id:number)=>{
+
+//TO CONFIRM
+const confirm=async(id: number)=>{
     try{
-        const response = API.post(`order/${id}/delivered`);
+        const response = API.post(`order/${id}/confirm`);
+        console.log(response);
+    }
+    catch(err){
+        console.log(err);
+    }
+}
+
+
+//TO SEND
+const send=async(id:number)=>{
+    try{
+        const response = API.post(`order/${id}/sent`);
         console.log(response);
     }
     catch(err){
@@ -95,7 +108,14 @@ const deliver=async(id:number)=>{
                         <div className="p-2 d-flex flex-column pb-3  w-75">
                             <span className="mb-1">{element.itemName}</span>
                             <span className="mb-3 text-muted">Order {element.orderedItemId}</span>
-                            {element.hasBeenDelivered ? <span>Delivered</span> : <span className="w-25 rounded text-center text-white bg-warning">PENDING</span>}
+                            <div className="d-flex justify-content-between ">
+                            {element.hasBeenDelivered ? <span>Delivered</span> : <span className="w-25 pt-1 rounded text-warning">PENDING</span>}
+                            <button type="button" onClick={async()=>{
+                                    await confirm(element.orderedItemId)
+                                    await getorder()
+                            }} className="btn btn-success">Confirm</button>
+                            </div>
+                           
                         </div>
                     </Col>
                 )) : <p>You have no order here</p>}
@@ -111,7 +131,6 @@ const deliver=async(id:number)=>{
 
                 {confirmed && confirmed.length > 0 ? confirmed.map((element)=>(
                     <Col key={element.orderedItemId} lg={12} className="mb-3 rounded border d-flex">
-                        <>
                         <div className="w-25">
                          <span>Hello</span>
                         </div>
@@ -122,13 +141,12 @@ const deliver=async(id:number)=>{
                             
                             {element.hasBeenConfirmed ? <span className="w-25 rounded text-success">CONFIRMED</span> : <span className="w-25 rounded text-success">CONFIRMED</span>}
                             {element.hasBeenSent ? <span className="w-25 rounded text-success">SENT</span> : null}
-                            <button disabled={element.hasBeenDelivered === true || element.hasBeenSent === false} type="button" onClick={async()=>{
-                                    await deliver(element.orderedItemId)
+                            <button disabled={element.hasBeenSent === true} type="button" onClick={async()=>{
+                                    await send(element.orderedItemId)
                                     await getorder()
-                            }} className="btn btn-success">DELIVERED</button>
+                            }} className="btn btn-success">SEND</button>
                             </div>
                         </div>
-                    </>
                     </Col>
                 )) : <p>You have no order here</p>}
            </Row>
@@ -149,7 +167,7 @@ const deliver=async(id:number)=>{
                         <div className="p-2 d-flex flex-column pb-3  w-75">
                             <span className="mb-1">{element.itemName}</span>
                             <span className="mb-3 text-muted">Order {element.orderedItemId}</span>
-                            {element.hasBeenDelivered ? <span>Delivered</span> : <span className="w-25 rounded text-center text-white bg-warning">PENDING</span>}
+                            {element.hasBeenDelivered ? <span>Delivered</span> : <span className="w-25 rounded  text-success">SENT</span>}
                         </div>
                     </Col>
                 )) : <p>You have no order here</p>}

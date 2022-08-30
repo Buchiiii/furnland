@@ -76,8 +76,8 @@ export const Productpage = () => {
             responsedata.map((element) => (
               <>
               
-              <div className="col-6 col-lg-3 " key={element.id}>
-              <Link className="text-decoration-none" to={`/products/${element.id}`}>
+              <div className="col-6 border col-lg-3 " key={element.id}>
+              {/* <Link className="text-decoration-none" to={`/products/${element.id}`}> */}
                 <div style={{ height: "400px" }}>
                   <div className="h-50 border" style={{background:`linear-gradient( rgba(0,0,0,0.7), rgba(0,0,0, 0.7)) , url(${url}) center `}}></div>
                   <div className="row">
@@ -110,7 +110,7 @@ export const Productpage = () => {
                     </div>
                   </div>
                 </div>
-                </Link>
+                {/* </Link> */}
               </div>
              
               </>

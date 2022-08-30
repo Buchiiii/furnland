@@ -16,6 +16,8 @@ code {
   background-color: rgb(204, 199, 199);
 }
 
+
+.nav-pills .active
 .navbar-dropdown-item:focus{
   background-color: none;
 }
