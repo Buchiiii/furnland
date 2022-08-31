@@ -7,6 +7,7 @@ import { productProps, User } from "./Types";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {API} from ".././controller/api"
+import Spinner from "react-bootstrap/Spinner";
 export const Home = () => {
   const navigate = useNavigate();
 
@@ -259,7 +260,7 @@ export const Home = () => {
                 </div>
               ))
             ) : (
-              <p>Loading</p>
+              <div className="text-center"><Spinner animation="border"/></div>
             )}
           </div>
         </div>

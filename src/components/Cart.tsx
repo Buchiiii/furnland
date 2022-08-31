@@ -2,8 +2,9 @@ import { Row, Container, Col } from "react-bootstrap";
 import { User } from "./Types";
 import { useState, useEffect } from "react";
 import { productProps } from "./Types";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { API } from "../controller/api";
+import Spinner from 'react-bootstrap/Spinner';
 export const Cart = () => {
   const navigate = useNavigate();
 
@@ -11,24 +12,12 @@ export const Cart = () => {
   const [data, setdata] = useState<User | null>(null);
   const [responsedata, setresponsedata] = useState<productProps[] | null>(null);
 
-  const configg = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${data?.token}`,
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
-  const config = {
-    headers: {
-      Authorization: `Bearer ${data?.token}`,
-    },
-  };
 
   const gett = async () => {
     try {
-      const response = await axios.get(
-        "https://test-furn.herokuapp.com/users/cart",
-        config
+      const response = await API.get(
+        "/users/cart",
+        
       );
       console.log(response.data);
       setresponsedata(response.data.selectedItems);
@@ -39,10 +28,10 @@ export const Cart = () => {
 
   const post = async () => {
     try {
-      const response = await axios.post(
-        "https://test-furn.herokuapp.com/order/fromCart",
-        {},
-        configg
+      const response = await API.post(
+        "/order/fromCart",
+        {}
+        
       );
       window.location.reload();
       //navigate("/")
@@ -76,7 +65,7 @@ export const Cart = () => {
   }, [responsedata]);
 
   return (
-    <div style={{height:"90vh"}}>
+    <div style={{height:"100vh"}}>
       {/*  */}
       <Container className="border-bottom">
         <div className="text-center">
@@ -103,7 +92,7 @@ export const Cart = () => {
                   </div>
                 ))
               ) : (
-                <p>Loading</p>
+                <div className="text-center"><Spinner animation="border"/></div>
               )
             ) : (
               <div className="text-center">

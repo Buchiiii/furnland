@@ -5,9 +5,10 @@ import { Formik, Form } from "formik";
 import { User,vendorProps } from "./Types";
 import {productProps} from "./Types";
 import Spinner from 'react-bootstrap/Spinner';
-
 import * as Yup from "yup";
-import axios from "axios";
+
+
+import { API } from "../controller/api";
 export const Vendor = () => {
   const [add, setadd] = useState(false);
   const [show, setshow] = useState(true);
@@ -25,16 +26,10 @@ export const Vendor = () => {
   };
 
   const validate = Yup.object({});
-  const configg = {
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${data?.token}`,
-      "Access-Control-Allow-Origin": "*",
-    },
-  };
+
   const getVendorItems=async()=>{
     try{
-      const response = await axios.get(`https://test-furn.herokuapp.com/item/vendor/${data?.id}`,configg);
+      const response = await API.get(`/item/vendor/${data?.id}`);
       console.log(response);
       setvendoritems(response.data);
     }catch(err){
@@ -43,8 +38,8 @@ export const Vendor = () => {
   }
   const submit=async(values:vendorProps)=>{
     try{
-        const response = await axios.post(
-          "https://test-furn.herokuapp.com/item/itemCreation",
+        const response = await API.post(
+          "/item/itemCreation",
           {
       itemName: values.itemName,
     itemType: values.itemType,
@@ -54,7 +49,6 @@ export const Vendor = () => {
     imageUrl: values.imageUrl,
     deliveryEstimation: values.deliveryEstimation
           },
-          configg
         );
         //navigate("/")
         console.log(response);

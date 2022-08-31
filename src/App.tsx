@@ -12,6 +12,7 @@ import { Profile } from './components/Profile';
 import {Footer} from "./components/Footer";
 import {VendorRegister} from "./components/VendorRegister";
 import {Itempage} from "./components/Itempage";
+
 function App() {
   return (
     <>
@@ -31,6 +32,7 @@ function App() {
       <Route path="/register" element={<Register/>}/>
       <Route path="/profile" element={<Profile/>}/>
       <Route path="/vendorregistration" element={<VendorRegister/>}/>
+     
       </Routes>
       </main>
       <div className=" justify-self-end" >
