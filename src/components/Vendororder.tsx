@@ -138,10 +138,15 @@ const send=async(id:number)=>{
                             <span className="mb-1">{element.itemName}</span>
                             <span className="mb-3 text-muted">Order {element.orderedItemId}</span>
                             <div className="d-flex justify-content-between ">
-                            
-                            {element.hasBeenConfirmed ? <span className="w-25 rounded text-success">CONFIRMED</span> : <span className="w-25 rounded text-success">CONFIRMED</span>}
-                            {element.hasBeenSent ? <span className="w-25 rounded text-success">SENT</span> : null}
-                            <button disabled={element.hasBeenSent === true} type="button" onClick={async()=>{
+                            <div className="w-25 d-flex justify-content-between">
+                            <span className="text-success">CONFIRMED</span>
+                            {element.hasBeenConfirmed && <span className="w-25 rounded text-center text-success"><i className="bi bi-check-circle"></i></span> }
+                            </div>
+                            <div className="w-25 d-flex justify-content-between ">
+                            {element.hasBeenSent ? <span className="w-25 rounded text-success">SENT</span> : <span className="w-25 rounded text-danger">SENT</span> }
+                            {element.hasBeenSent ? <span className="w-25 rounded text-success"><i className="bi bi-check-circle"></i></span> : <span className="w-25 rounded text-danger"><i className="bi bi-x-circle"></i></span>}
+                            </div>
+                            <button disabled={element.hasBeenSent === true } type="button" onClick={async()=>{
                                     await send(element.orderedItemId)
                                     await getorder()
                             }} className="btn btn-success">SEND</button>
@@ -189,7 +194,21 @@ const send=async(id:number)=>{
                         <div className="p-2 d-flex flex-column pb-3  w-75">
                             <span className="mb-1">{element.itemName}</span>
                             <span className="mb-3 text-muted">Order {element.orderedItemId}</span>
-                            {element.hasBeenDelivered ? <span>Delivered</span> : <span className="w-25 rounded text-center text-white bg-warning">PENDING</span>}
+                            <div className="d-flex justify-content-between ">
+                            <div className="w-25 d-flex justify-content-between ">
+                            <span className="text-success">CONFIRMED</span>
+                            {element.hasBeenConfirmed && <span className="w-25 rounded text-center text-success"><i className="bi bi-check-circle"></i></span> }
+                            </div>
+                            <div className="w-25 d-flex justify-content-between ">
+                            <span className="text-success">SENT</span>
+                            {element.hasBeenSent && <span className="w-25 rounded text-center text-success"><i className="bi bi-check-circle"></i></span> }
+                            </div>
+                            <div className="w-25 d-flex justify-content-between ">
+                            <span className="text-success">DELIVERED</span>
+                            {element.hasBeenDelivered && <span className="w-25 rounded text-center text-success"><i className="bi bi-check-circle"></i></span> }
+                            </div>
+                            </div>
+                            
                         </div>
                     </Col>
                 )) : <p>You have no order here</p>}
