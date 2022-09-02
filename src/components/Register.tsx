@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { Input } from "./Fields";
 import { API } from "../controller/api";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
@@ -28,7 +29,7 @@ export const Register = () => {
     try {
       const response = await API.post("api/auth/register", value);
       console.log(response);
-      alert(response.data.message);
+      toast.success(response.data.message);
       navigate("/login");
     } catch (err) {
       console.log(err);
@@ -108,6 +109,7 @@ export const Register = () => {
                               >
                                 Register
                               </button>
+                              <ToastContainer/>
                             </div>
                             <div className="mt-4 text-center">
                               <p>

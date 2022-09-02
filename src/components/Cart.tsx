@@ -106,8 +106,8 @@ export const Cart = () => {
               </div>
             )}
           </Col>
-          <Col className="border" lg={5}>
-            <div className="text-center">
+          <Col className="h-75 border" lg={5}>
+            <div className=" text-center">
               <h3>Order Summary</h3>
               <hr style={{ padding: "0px", margin: "0px" }} />
             </div>

@@ -23,29 +23,31 @@ export const NavbarComponent = () => {
       <Navbar expand="lg">
         <Container>
           <Navbar.Toggle className="" />
-          <Navbar.Brand className="">
+          <Navbar.Brand className="mt-2">
             <Link style={{ textDecoration: "none", color: "#054C73" }} to="/">
               <h1>Furnland</h1>
             </Link>
           </Navbar.Brand>
 
           <Navbar.Collapse className="pt-2" id="navbarScroll">
-          <Nav className="w-100" navbarScroll>
-            <div className=" w-100">
-              <Row>
-                  <Col xs={9} lg={10}>
-                  <input className="form-control"></input>
-                  </Col>
-                  <Col lg={2}>
-                  <button className="btn  btn-outline-primary">Search</button>
-                  </Col>
-              </Row>
+        
+      
+           
+            <Nav className="w-100  justify-content-between" navbarScroll>
+            <div className="text-center  w-50   ms-5 mt-2 w-sm-75 d-flex h-75">
               
-              
+              <div className="input-group">
+              <input className="ps-3 form-control rounded-pill" type="text" placeholder="Search"/>
+             
+             <span className="input-group-append">
+              <button className="btn "><span><i style={{color: "#F66B0E",fontSize:"20px" }}className="bi bi-search"></i></span></button>
+              </span>
+              </div>
+           
+          
+          
 </div>
-            </Nav>
-            <Nav className="" navbarScroll>
-              
+              <div className="w-50 d-flex flex-row ">
               <Nav.Link>
                 <Link className="pe-4 nav-link" to="/">
                   Home
@@ -137,6 +139,7 @@ export const NavbarComponent = () => {
 </NavDropdown>
                 
               )}
+              </div>
             </Nav>
           </Navbar.Collapse>
           {data && data.role === 1 ? 

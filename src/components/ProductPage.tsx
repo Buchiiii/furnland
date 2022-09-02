@@ -7,9 +7,11 @@ import { User } from "./Types";
 import { API } from "../controller/api";
 import ReactPaginate from "react-paginate"
 import Spinner from 'react-bootstrap/Spinner';
+import { ToastContainer, toast } from "react-toastify";
 //import { loginContext, userContext } from "./usecontext";
 import { useNavigate,Link } from "react-router-dom";
 
+//toast.configure();
 export const Productpage = () => {
   const navigate = useNavigate();
   const [totalpages,settotalpages]=useState(0)
@@ -86,9 +88,14 @@ export const Productpage = () => {
         {},
         config
       );
-      alert("Item successfully added")
+      //alert("Item successfully added")
+      toast.success("Item added")
       console.log(response);
-    } catch (err) {}
+    } catch (error) {
+      if(error){
+        toast.warning("Error")
+      }
+    }
   };
   useEffect(() => {
     getresponse()
@@ -96,6 +103,7 @@ export const Productpage = () => {
 
   return (
     <>
+    
     <div  className="bg-light">
       <div className="container pt-5">
         <div className="row gy-0">
@@ -106,6 +114,7 @@ export const Productpage = () => {
               <div className="col-6 col-lg-3 " key={element.id}>
               {/* <Link className="text-decoration-none" to={`/products/${element.id}`}> */}
                 <div style={{ height: "400px" }}>
+                  <a className="text-decoration-none" href={`products/${element.id}`} >
                   <div className="h-50" style={{background:`linear-gradient( rgba(0,0,0,0.7), rgba(0,0,0, 0.7)) , url(${url}) center `}}></div>
                   <div className="row">
                     <div className="col-12">
@@ -119,11 +128,15 @@ export const Productpage = () => {
                         {element.itemDescription}
                       </span>
                     </div>
+                    </div>
+                    </a>
+                    <div className="row">
                     <div className="col-12 pt-4">
                       <div className="text-center">
                         <button
                           type="button"
                           onClick={async () => {
+                           
                             data
                             ? await postdata(element.id)
                               : navigate("/login");
@@ -133,6 +146,7 @@ export const Productpage = () => {
                         >
                           Add to cart
                         </button>
+                        <ToastContainer />
                       </div>
                     </div>
                   </div>
