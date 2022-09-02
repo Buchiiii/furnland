@@ -4,6 +4,7 @@ import { Formik, Form } from "formik";
 import { Input } from "./Fields";
 import { API } from "../controller/api";
 import * as Yup from "yup";
+import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "react-bootstrap/Spinner";
 import { User } from "./Types";
 import { ToastContainer, toast } from "react-toastify";
@@ -97,6 +98,7 @@ const makedefault=async(id : number)=>{
   try{
     const response= await API.post(`/users/${id}/makeDefault`,{})
     console.log(response)
+    toast.dismiss()
     toast.success("Address successfully sent as default")
   }catch(err){
     console.log(err);
@@ -259,7 +261,7 @@ const makedefault=async(id : number)=>{
                           >
                             SET DEFAULT
                           </button>
-                          <ToastContainer/>
+                          <ToastContainer limit={1}/>
                           </>
                           
                         )}
