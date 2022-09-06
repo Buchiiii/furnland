@@ -8,6 +8,7 @@ import { User } from "./Types";
 export const NavbarComponent = () => {
   const navigate = useNavigate();
   const [data, setdata] = useState<User | null>(null);
+  const [search,setsearch]=useState<string | null>(null);
   //const logg=useContext(loginContext)
   useEffect(() => {
     const user = window.localStorage.getItem("Data");
@@ -16,7 +17,8 @@ export const NavbarComponent = () => {
     }
   }, []);
 
-  console.log(data);
+  // console.log(data);
+  console.log(search);
 
   return (
     <>
@@ -37,10 +39,15 @@ export const NavbarComponent = () => {
             <div className="text-center  w-50   ms-5 mt-2 w-sm-75 d-flex h-75">
               
               <div className="input-group">
-              <input className="ps-3 form-control rounded-pill" type="text" placeholder="Search"/>
+              <input className="ps-3 form-control rounded-pill" onChange={(e)=>{setsearch(e.target.value)}} type="text" placeholder="Search"/>
              
              <span className="input-group-append">
-              <button className="btn "><span><i style={{color: "#F66B0E",fontSize:"20px" }}className="bi bi-search"></i></span></button>
+              <button className="btn " onClick={()=>{
+                if(search !== null){
+                  navigate(`/${search}`)
+                }
+                
+              }}><span><i style={{color: "#F66B0E",fontSize:"20px" }}className="bi bi-search"></i></span></button>
               </span>
               </div>
            
@@ -48,8 +55,8 @@ export const NavbarComponent = () => {
           
 </div>
               <div className="w-50 d-flex flex-row ">
-              <Nav.Link>
-                <Link className="pe-4 nav-link" to="/">
+              <Nav.Link >
+                <Link  className="pe-4 nav-link" to="/">
                   Home
                 </Link>
               </Nav.Link>
@@ -142,7 +149,7 @@ export const NavbarComponent = () => {
               </div>
             </Nav>
           </Navbar.Collapse>
-          {data && data.role === 1 ? 
+          {(data?.role !== "ROLE_VENDOR") ? 
           <Nav>
             <Nav.Link>
             

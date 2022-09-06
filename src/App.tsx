@@ -12,6 +12,7 @@ import { Profile } from './components/Profile';
 import {Footer} from "./components/Footer";
 import {VendorRegister} from "./components/VendorRegister";
 import {Itempage} from "./components/Itempage";
+import {Search} from "./components/Search";
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
       <main>
       <Routes>
       <Route path="/" element={<Home/>}/>
+      <Route path="/:idd" element={<Search/>}/>
       <Route path="/login" element={<Login/>}/>
       <Route path="/products" element={<Productpage/>}/>
       <Route path="/products/:id" element={<Itempage/>}/>

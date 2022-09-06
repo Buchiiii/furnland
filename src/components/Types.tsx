@@ -15,7 +15,7 @@ export type inputProps={
 export type User={
     email:string,
     token:string,
-    role:number,
+    role:string,
     id:number
 }
 

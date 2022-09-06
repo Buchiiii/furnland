@@ -124,7 +124,7 @@ const makedefault=async(id : number)=>{
   useEffect(() => {
     if (data) {
       getprofile();
-      if (data.role === 1) {
+      if (data.role === "ROLE_USER") {
         getaddress();
       }
     }
@@ -140,7 +140,7 @@ const makedefault=async(id : number)=>{
             </div>
           </Col>
           <Row className="pt-3">
-            <Col className="" lg={data && data.role === 3 ? 12 : 6}>
+            <Col className="" lg={data && data.role === "ROLE_VENDOR" ? 12 : 6}>
               <div className="d-flex justify-content-between ps-2 pt-3 pb-2 border border-bottom">
                 <h6>ACCOUNT DETAILS</h6>
                 <button className="btn me-2 btn-md">
@@ -165,7 +165,7 @@ const makedefault=async(id : number)=>{
                 </div>
               )}
             </Col>
-            {data && data.role === 1 ? (
+            {data && data.role === "ROLE_USER" ? (
               <Col lg={6}>
                 <>
                   <div className="d-flex justify-content-between ps-2 pt-3 pb-2 border border-bottom">

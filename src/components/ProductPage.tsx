@@ -73,20 +73,14 @@ export const Productpage = () => {
   
   //console.log(token)
 
-  const config = {
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${data?.token}`,
-      "Access-Control-Allow-Origin": "*",
-    }
-  };
+ 
 
   const postdata = async (id: number) => {
     try {
-      const response = await axios.post(
+      const response = await API.post(
         `https://test-furn.herokuapp.com/item/itemSelect/${id}`,
         {},
-        config
+      
       );
       //alert("Item successfully added")
       toast.success("Item added")

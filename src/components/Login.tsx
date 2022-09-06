@@ -36,7 +36,7 @@ export const Login = () => {
         // token: response.data.accessToken,
       //  });
       //  }
-      window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken,role:response.data.roles[0].id,id:response.data.profile.id}))
+      window.localStorage.setItem("Data",JSON.stringify({email:response.data.email,token:response.data.accessToken,role:response.data.roles[0].name,id:response.data.profile.id}))
       // setUser(response.data.accessToken)
     } catch (error:any) {
       alert(error.response.data.message)

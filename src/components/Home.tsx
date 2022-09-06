@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {API} from ".././controller/api"
 import Spinner from "react-bootstrap/Spinner";
+import { ToastContainer, toast } from "react-toastify";
 export const Home = () => {
   const navigate = useNavigate();
 
@@ -39,6 +40,22 @@ export const Home = () => {
     }
   }, []);
 
+  const postdata = async (id: number) => {
+    try {
+      const response = await API.post(
+        `https://test-furn.herokuapp.com/item/itemSelect/${id}`,
+        {},
+        
+      );
+      //alert("Item successfully added")
+      toast.success("Item added")
+      console.log(response);
+    } catch (error) {
+      if(error){
+        toast.warning("Error")
+      }
+    }
+  };
   return (
     <div>
       <div className="bg-light">
@@ -148,8 +165,10 @@ export const Home = () => {
             </div>
           </div>
 
-          <div className="row justify-content-between ">
+          <div className={data?.role === "ROLE_VENDOR"? "row justify-content-around  " : "row justify-content-between"}>
+          {data?.role !== "ROLE_VENDOR" ?
             <div className="seller col-lg-3 border pt-5 pb-5 ">
+              
               <Link
                 to="/vendorregistration"
                 className="text-decoration-none   "
@@ -169,7 +188,7 @@ export const Home = () => {
                   </div>
                 </div>
               </Link>
-            </div>
+            </div> : null}
 
             <div className="col-lg-3 pt-5 pb-5 border bg-light  ">
               <div className="container">
@@ -229,15 +248,16 @@ export const Home = () => {
           <div className="row justify-content-between mt-1 gx-5 gy-5 ">
             {responsedata ? (
               responsedata.map((element) => (
-                <div className="col-lg-3 col-12" key={element.id}>
+                <div className="col-lg-6 col-12" key={element.id}>
                   <div
                     style={{
                       height: "250px",
                       background: ` url(${url}) center `,
                     }}
                   >
-                    <div className="row align-items-end justify-content-center">
-                      <div className="border bg-white col-10">
+                    
+                    <div className="row  h-100 align-items-end justify-content-center">
+                      <div className=" bg-white col-10">
                         <div>
                           <span>{element.itemName}</span>
                         </div>
@@ -247,6 +267,12 @@ export const Home = () => {
                             type="button"
                             style={{ backgroundColor: "#F66B0E" }}
                             className="btn btn-sm text-white"
+                            onClick={async () => {
+                           
+                              data
+                              ? await postdata(element.id)
+                                : navigate("/login");
+                            }}
                           >
                             Add to cart
                           </button>
@@ -256,13 +282,16 @@ export const Home = () => {
                         </div>
                       </div>
                     </div>
+                  
                   </div>
                 </div>
               ))
             ) : (
               <div className="text-center"><Spinner animation="border"/></div>
+              
             )}
           </div>
+          
         </div>
       </div>
     </div>

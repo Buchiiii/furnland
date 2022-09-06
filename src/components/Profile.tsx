@@ -34,7 +34,7 @@ export const Profile = () => {
             
               <Nav.Link eventKey="account" className="text-dark border-bottom"><span className="me-2"><i className="bi bi-person-circle"></i></span>My Furnland Account</Nav.Link>
               <Nav.Link eventKey="order" className="text-dark"><span className="me-2"><i className="bi bi-box2"></i></span>Order</Nav.Link>
-              {data && role === 3 ? <Nav.Link eventKey="vendor" className="text-dark"><span className="me-2"><i className="bi bi-box2"></i></span>Vendor</Nav.Link> : null}
+              {data && role === "ROLE_VENDOR" ? <Nav.Link eventKey="vendor" className="text-dark"><span className="me-2"><i className="bi bi-box2"></i></span>Vendor</Nav.Link> : null}
           </Nav>
           </div>
           {/* </Navbar> */}
@@ -48,7 +48,7 @@ export const Profile = () => {
                   <Account/>
                 </Tab.Pane>
                 <Tab.Pane eventKey="order">
-                  {data && role ===3 ? <Vendororder/> : <Order/> }
+                  {data && role === "ROLE_VENDOR" ? <Vendororder/> : <Order/> }
                   
                 </Tab.Pane>
                 <Tab.Pane eventKey="vendor">
