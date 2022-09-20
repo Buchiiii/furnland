@@ -90,16 +90,19 @@ export const Register = () => {
                               name="email"
                               type="text"
                               label="Email address"
+                              required
                             />
                             <Input
                               name="phoneNumber"
                               type="number"
                               label="Phone Number"
+                              required
                             />
                             <Input
                               name="password"
                               type="password"
                               label="Password"
+                              required
                             />
                             <div className="mt-4 text-center">
                               <button

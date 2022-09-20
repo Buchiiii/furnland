@@ -9,7 +9,15 @@ export type styleProps={
 export type inputProps={
     name:string,
     label:string,
-    type:string
+    type:string,
+    required?:boolean
+}
+export type fileProps={
+    name:string,
+    label:string,
+    type:string,
+    required?:boolean,
+    change: (e: React.FormEvent<HTMLInputElement>, name: string) => void
 }
 
 export type User={
